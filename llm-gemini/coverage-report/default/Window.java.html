@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Window.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Window.java</span></div><h1>Window.java</h1><pre class="source lang-java linenums">import java.awt.GridLayout;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+
+class Window extends JFrame{
+	private static final long serialVersionUID = -2542001418764869760L;
+	public static ArrayList&lt;ArrayList&lt;DataOfSquare&gt;&gt; Grid;
+<span class="fc" id="L11">	public static int width = 20;</span>
+<span class="fc" id="L12">	public static int height = 20;</span>
+<span class="nc" id="L13">	public Window(){</span>
+		
+		
+		// Creates the arraylist that'll contain the threads
+<span class="nc" id="L17">		Grid = new ArrayList&lt;ArrayList&lt;DataOfSquare&gt;&gt;();</span>
+		ArrayList&lt;DataOfSquare&gt; data;
+		
+		// Creates Threads and its data and adds it to the arrayList
+<span class="nc bnc" id="L21" title="All 2 branches missed.">		for(int i=0;i&lt;width;i++){</span>
+<span class="nc" id="L22">			data= new ArrayList&lt;DataOfSquare&gt;();</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">			for(int j=0;j&lt;height;j++){</span>
+<span class="nc" id="L24">				DataOfSquare c = new DataOfSquare(2);</span>
+<span class="nc" id="L25">				data.add(c);</span>
+			}
+<span class="nc" id="L27">			Grid.add(data);</span>
+		}
+		
+		// Setting up the layout of the panel
+<span class="nc" id="L31">		getContentPane().setLayout(new GridLayout(20,20,0,0));</span>
+		
+		// Start &amp; pauses all threads, then adds every square of each thread to the panel
+<span class="nc bnc" id="L34" title="All 2 branches missed.">		for(int i=0;i&lt;width;i++){</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">			for(int j=0;j&lt;height;j++){</span>
+<span class="nc" id="L36">				getContentPane().add(Grid.get(i).get(j).square);</span>
+			}
+		}
+		
+		// initial position of the snake
+<span class="nc" id="L41">		Tuple position = new Tuple(10,10);</span>
+		// passing this value to the controller
+<span class="nc" id="L43">		ThreadsController c = new ThreadsController(position);</span>
+		//Let's start the game now..
+<span class="nc" id="L45">		c.start();</span>
+
+		// Links the window to the keyboardlistenner.
+<span class="nc" id="L48">		this.addKeyListener((KeyListener) new KeyboardListener());</span>
+
+		//To do : handle multiplayers .. The above works, test it and see what happens
+		
+		//Tuple position2 = new Tuple(13,13);
+		//ControlleurThreads c2 = new ControlleurThreads(position2);
+		//c2.start();
+		
+<span class="nc" id="L56">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
